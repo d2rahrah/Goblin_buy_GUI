@@ -1,0 +1,178 @@
+/* Body and background */
+body {
+    margin: 0;
+    font-family: Consolas, "Monaco", monospace;
+    background-color: black; /* solid black background */
+    color: #00FF00;
+    overflow: auto; /* allow page scrolling */
+    height: 100vh;  /* ensure full viewport */
+}
+
+
+
+//* Terminal base style */
+.terminal, textarea, input, button, #fake-input {
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: black;
+    color: #00FF00;
+    font-family: 'Consolas', monospace;
+    overflow-x: auto;
+    border: 2px solid #00FF00;
+    position: relative; /* CRT scanline */
+}
+
+/* Glow Profiles */
+.low-glow {
+  text-shadow:
+    0 0 3px #00FF00,
+    0 0 6px #00FF00;
+}
+
+.med-glow {
+  text-shadow:
+    0 0 10px #00FF00,
+    0 0 40px #00FF00,
+    0 0 60px #00FF00;
+}
+
+.high-glow {
+  text-shadow:
+    0 0 5px #00FF00,
+    0 0 10px #00FF00,
+    0 0 20px #00FF00,
+    0 0 40px #00FF00,
+    0 0 60px #00FF00;
+}
+
+/* Special hardcoded glow for the ASCII banner in neon green */
+.ascii-footer {
+  text-shadow:
+    0 0 10px #00FF00,
+    0 0 20px #00FF00,
+    0 0 40px #00FF00,
+    0 0 80px #00FF00;	
+	
+}
+/* ASCII footer */
+.ascii-footer {
+    color: #00FF00;
+    font-family: monospace;
+    opacity: 0;
+    animation: fadeIn 100s forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+
+
+#fake-input {
+    color: #00FF00;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    border-top: 1px solid #00FF00;
+    padding: 2px 0;
+    white-space: pre;
+}
+
+/* blinking cursor */
+#fake-input::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+
+/* ASCII art container */
+.ascii-container {
+    max-height: 3000px;
+    overflow-y: auto;
+}
+
+/* Hidden Easter egg box */
+#ascii-secret {
+    display: none;
+    max-height: 600px; /* increase if needed */
+    overflow-y: auto;
+    white-space: pre;
+    background-color: black;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 1em;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: black;
+    color: #00FF00;
+    border: 2px solid #00FF00; /* Neon Green */
+    padding: 2px 5px;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+button {
+    cursor: pointer;
+    margin-top: 10px;
+    text-shadow: 0 0 3px #00FF00; /* Neon Green */
+}
+
+button:hover,
+input[type="file"]:hover::file-selector-button {
+    background: #0f0;
+    color: black;
+    box-shadow: 0 0 10px #00FF00; /* Neon Green */
+}
+
+textarea {
+    height: 200px;
+    resize: none;
+}
+
+/* Placeholder */
+::placeholder {
+    color: #00FF00;
+    opacity: 0.5;
+}
+
+
+
+
+/* Heading glow */
+h1 {
+    text-align: center;
+    color: #00FF0;
+    text-shadow: 0 0 10px #00FF00, /* Neon Green */
+                 0 0 10px #00FF00,
+                 0 0 20px #00FF00;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin: 10px 0 5px 0;
+    color: #00FF00;
+}
+
+/* CRT scanline effect */
+.terminal::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        rgba(0, 255, 0, 0.05) 0 1px,
+        rgba(0, 0, 0, 0) 1px 2px
+    );
+}
+
+
