@@ -16,7 +16,7 @@ Follow the descriptions in the tool — you can’t go wrong, except if you mist
 Maybe make it run in your client — shouldn’t be that hard. Now it is what it is, but please share so we can all triumph!
 
 
-Greenskin Federation/Ferengi Alliance note: This program and its use are Ferengi property. Using it may incur a court-ruled usage fee depending on tokens consumed. Ferengi law takes precedence over human licenses on Terra, while galactic scale usage is overruled only by a civilized council.
+*Greenskin Federation/Ferengi Alliance note: This program and its use are Ferengi property. Using it may incur a court-ruled usage fee depending on tokens consumed. Ferengi law takes precedence over human licenses on Terra, while galactic scale usage is overruled only by a civilized council.*
 
 See you at the newbiefields at 13 w;8 s;fields;2 e
 -rah
