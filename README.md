@@ -1,16 +1,22 @@
 # Rah-Rah's HTML Buy tool for Goblins
 
-About:
-Hey! You found it — this is my little HTML tool for the community.  
-Use it, play with it, tweak it… just remember who made it as it's so complicated and hours hours have gone into it 😎.. or maybe not, maybe it was just silly python program to do the task and now somethingm more pleasent for our eyes.
+About
 
-Maybe make it in your client, should not be that hard. Now it is what it is, but plz share and we shall triumph! Greenskin federation*! 
+Hey! You found it — this is my little HTML tool for the community.
+Use it, play with it, tweak it… just remember who made it 😎. Hours of work (or maybe just silly Python code) went into it, but now it’s more pleasant for your eyes.
 
-*Greenskin federation acknowledges that the program and it's use is a Ferengi property and using it may accumulate in a court ruled usage fee depending on the tokens used while using it. Ferengi law goes before any Hu-Man licenses. Only on Terra you may put that license as the main one. On galactic scale, it's only Terra property, which will be overruled by any civilized council in court.
+Usage
 
-Usage:
-In desc there is pretty much what you need to operate. Just open it and you cant go wrong, except broke if you typo the price field ^_^
+Open the HTML file.
 
+Copy whole shops inventory to a file.
+
+Follow the descriptions in the tool — you can’t go wrong, except if you mistype the price field ^_^.
+
+Maybe make it run in your client — shouldn’t be that hard. Now it is what it is, but please share so we can all triumph!
+
+
+Greenskin Federation/Ferengi Alliance note: This program and its use are Ferengi property. Using it may incur a court-ruled usage fee depending on tokens consumed. Ferengi law takes precedence over human licenses on Terra, while galactic scale usage is overruled only by a civilized council.
 
 See you at the newbiefields at 13 w;8 s;fields;2 e
 -rah
