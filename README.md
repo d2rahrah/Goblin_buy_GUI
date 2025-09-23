@@ -7,12 +7,10 @@ Use it, play with it, tweak it… just remember who made it 😎. Hours of work 
 
 Usage:
 
-Copy whole shops inventory to a file.
-,-------------------------------------------------------------.
-|  1.| An obsidian onyx                             |50000|  1|
-|  2.| A mansion key                                |   20|  2|
-|  3.| etc.                                         | 3,50|  1|
-`-------------------------------------------------------------'
+Copy whole shops inventory to a file, from ,-------------------------------------------------------------. to `-------------------------------------------------------------' (sorry didnt quite align and fuck playing with this readme, you get the point)
+
+
+
 
 
 Open the HTML file.
