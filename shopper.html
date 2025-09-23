@@ -35,6 +35,10 @@ button { margin-top:0.5rem; }
     <button id="btnCopy">Copy to Clipboard</button>
    <!-- <div class="small-note">Shoplist parser accepts pipe (`|`) fields. Fallback to `item,price` if pipes are missing.</div> -->
   </div>
+<div id="totalPrice" style="margin-left:20px; min-width:80px; text-align:right; font-weight:bold;">
+  Total: 0
+</div>
+
 
   <!-- Middle ASCII -->
   <pre id="ascii-middle" class="high-glow"></pre>
@@ -128,57 +132,100 @@ function makeList() {
     outEl.value = 'Please select a shoplist file first.';
     return;
   }
+
   const file = fileEl.files[0];
   const reader = new FileReader();
+
   reader.onload = function(e) {
     const raw = String(e.target.result || '');
     const lines = raw.split(/\r?\n/).filter(l => l.trim().length > 0);
 
     const buyCommands = [];
+    let totalPrice = 0;
+
     for (const line of lines) {
-      // prefer the pipe format you used before
+      // skip any --More-- or similar
+      if (line.includes('--More--')) continue;
+
       if (line.indexOf('|') !== -1) {
-        // example: "1| .123 | name | 500 | ...", we used parts[1] and parts[3] previously
         const parts = line.split('|').map(p => p.trim());
-        // ensure parts exist
         const itemNumber = (parts[1] || '').replace(/^\.\s*/, '').trim();
         const priceCandidate = parts[3] || parts[2] || '';
         const p = parseInt(priceCandidate.replace(/[^\d-]/g, ''), 10);
-        if (!isNaN(p) && p <= maxPrice) buyCommands.push(`buy ${itemNumber} (${p} gold)`);
+		const cleanNumber = itemNumber.replace(/\.$/, '');  // remove trailing dot
+        if (!isNaN(p) && p <= maxPrice) {
+		  
+          buyCommands.push({ cmd: `buy ${cleanNumber}`, price: p });
+          totalPrice += p;
+        }
       } else {
-        // fallback: try CSV-like "item,price" or "item - price"
-        const csvParts = line.split(/[,|-]/).map(p=>p.trim());
-        const maybePrice = csvParts[csvParts.length-1];
+        const csvParts = line.split(/[,|-]/).map(p => p.trim());
+        const maybePrice = csvParts[csvParts.length - 1];
         const p = parseInt(maybePrice.replace(/[^\d-]/g, ''), 10);
         const item = csvParts[0] || 'item';
-        if (!isNaN(p) && p <= maxPrice) buyCommands.push(`buy ${item} (${p} gold)`);
+        if (!isNaN(p) && p <= maxPrice) {
+          buyCommands.push({ cmd: `buy ${item}`, price: p });
+          totalPrice += p;
+        }
       }
     }
 
-    outEl.value = buyCommands.length ? buyCommands.join('; ') : 'No items under selected price found.';
+    // sort descending by number in command
+    buyCommands.sort((a, b) => {
+      const numA = parseInt(a.cmd.match(/\d+/)?.[0] || 0, 10);
+      const numB = parseInt(b.cmd.match(/\d+/)?.[0] || 0, 10);
+      return numB - numA;
+    });
+
+
+
+
+
+
+    // join commands with semicolon, no dot at the end
+    outEl.value = buyCommands.map(x => x.cmd).join(';');
+
+    // --- NEW: update total price box ---
+    const totalEl = document.getElementById('totalPrice');
+    if (totalEl) totalEl.textContent = 'Total: ' + totalPrice;
   };
+
   reader.onerror = function() {
     outEl.value = 'Failed to read file.';
   };
+
   reader.readAsText(file, 'UTF-8');
 }
 
+
 function copyToClipboard() {
-  const outEl = document.getElementById('output');
-  const text = outEl.value || '';
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'), ()=> alert('Copy failed'));
-  } else {
-    // fallback
-    outEl.select();
-    try { document.execCommand('copy'); alert('Copied to clipboard!'); }
-    catch(e) { alert('Copy failed'); }
+	const outEl = document.getElementById('output');
+	if (!outEl) return alert('No output to copy!');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(outEl.value)
+		.then(() => alert('Copied to clipboard!'))
+		.catch(() => alert('Copy failed.'));
+	} else {
+    // fallback for older browsers
+		outEl.select();
+		try { document.execCommand('copy'); alert('Copied!'); }
+		catch(e) { alert('Copy failed.'); }
   }
 }
+
+
+
+
 
 /* wire up buttons */
 document.getElementById('btnMake').addEventListener('click', makeList);
 document.getElementById('btnCopy').addEventListener('click', copyToClipboard);
+
+
+
+
+
 
 /* --------------------------
    TERMINAL / THE PROFIT, WE SMART NO ORION BS! WE SMART YOU GEAR ME? BTW buy COLA, Slurpy goooooood!!
@@ -196,7 +243,7 @@ function revealSecret() {
   }
 }
 
-/* small keyboard handler for the fake terminal */
+/* small keyboard handler for the  terminal */
 document.addEventListener('keydown', (ev) => {
   // allow shortcuts to not break typing: ignore if user is focused on an input/textarea
   const active = document.activeElement;
@@ -216,7 +263,7 @@ document.addEventListener('keydown', (ev) => {
     return;
   }
 
-  // basic typing into fake input
+  // basic typing into input
   if (ev.key === 'Backspace') {
     currentCmd = currentCmd.slice(0, -1);
     fakeInputEl.textContent = currentCmd;
