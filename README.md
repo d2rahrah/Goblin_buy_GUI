@@ -5,13 +5,20 @@ About
 Hey! You found it — this is my little HTML tool for the community.
 Use it, play with it, tweak it… just remember who made it 😎. Hours of work (or maybe just silly Python code) went into it, but now it’s more pleasant for your eyes.
 
-Usage
+Usage:
+
+Copy whole shops inventory to a file.
+,-------------------------------------------------------------.
+|  1.| An obsidian onyx                             |50000|  1|
+|  2.| A mansion key                                |   20|  2|
+|  3.| etc.                                         | 3,50|  1|
+`-------------------------------------------------------------'
+
 
 Open the HTML file.
 
-Copy whole shops inventory to a file.
 
-Follow the descriptions in the tool — you can’t go wrong, except if you mistype the price field ^_^.
+Follow the descriptions in the tool — you can’t go wrong, except if you mistype the price field ^_^. It will buy 1 of anything <= that price.
 
 Maybe make it run in your client — shouldn’t be that hard. Now it is what it is, but please share so we can all triumph!
 
