@@ -1,15 +1,24 @@
 # Rah-Rah's HTML Buy tool for Goblins
 
-About
+About 
 
 Hey! You found it — this is my little HTML tool for the community.
 Use it, play with it, tweak it… just remember who made it 😎. Hours of work (or maybe just silly Python code) went into it, but now it’s more pleasant for your eyes.
 
 Usage:
 
-Copy whole shops inventory to a file, from ,-------------------------------------------------------------. to `-------------------------------------------------------------' (sorry didnt quite align and fuck playing with this readme, you get the point)
+
+Copy whole shops inventory to a file. from the line to line. <- Seems to be quite vital
+use raw view for right viewing of this shit right here, or just trust me and copy from line to line.
 
 
+,-------------------------------------------------------------.                        
+|  1.| An obsidian onyx                             |50000|  1|                        
+|  2.| A mansion key                                |   20|  2|                        
+|  3.| etc.                                         | 3,50|  1|                        
+`-------------------------------------------------------------'                        
+
+If using Zmud you dont have to remove <80% SHOW MORE> or whatever is shown if you dont roll the whole screen at once, that's taken care of.
 
 
 
